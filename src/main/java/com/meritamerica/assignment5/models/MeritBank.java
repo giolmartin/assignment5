@@ -1,49 +1,34 @@
 package com.meritamerica.assignment5.models;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Random;
+import java.util.*;
 
 
 import com.meritamerica.assignment5.exceptions.*;
 
 public class MeritBank{
 	
-	private static AccountHolder[] accounts = new AccountHolder[0];
-	private static CDOffering[] cdOfferings = new CDOffering[3];
+	private static List<AccountHolder> accounts = new ArrayList<AccountHolder>();
+	private static List<CDOffering> cdOfferings = new ArrayList<CDOffering>();
 	                                     
 	private static  long accountNumber = 1;
 	
 	private static CDOffering bestCDOffering;
 	private static CDOffering secondBestCDOffering;
-	private static int counterA = 0;//counter accounts at addAccountHolder()
+	
 	
 	public static void addAccountHolder(AccountHolder accountHolder) 
 	{
-		if(counterA == accounts.length)
-		{
-			AccountHolder[] newAccounts = new AccountHolder[counterA + 1];
-			for(int i = 0; i <counterA ; i++)
-			{
-				newAccounts[i] = accounts[i];
-			}
-			accounts = newAccounts;
-		}
-			accounts[counterA++] = accountHolder;
-			
+		accounts.add(accountHolder);	
 	}
 	
-	public static AccountHolder[] getAccountHolders() 
+	public static List<AccountHolder> getAccountHolders() 
 	{
 		return accounts;
 	}
 	
-	public static CDOffering[] getCDOfferings() 
+	public static List<CDOffering> getCDOfferings() 
 	{
-		
-		
 		return  cdOfferings;	
 	}
 	
@@ -61,19 +46,21 @@ public class MeritBank{
 		cdOfferings = null;	
 	}
 	
-	public static void setCDOfferings(CDOffering[] offerings)
+	public static void setCDOfferings(CDOffering offerings)
 	{
-		cdOfferings = offerings;
+		cdOfferings.add(offerings);
 	}
 	
 	public  static long getNextAccountNumber() 
 	{
-		return accountNumber ;
+		return accountNumber++ ;
 	}
+	
 	public static void setAccountNumber(Long accountN) 
 	{
 		accountNumber = accountN;
 	}
+	
 	public static double totalBalances() 
 	{
 		double tB = 0;
@@ -181,12 +168,12 @@ public class MeritBank{
 		return true;
 	}
 	
-	public static AccountHolder[] sortAccountHolders() 
+	/*public static AccountHolder[] sortAccountHolders() 
 	{
 		 Arrays.sort(accounts);
 		 return accounts;
 	}
-	
+	*/
 	public static void setNextAccountNumber(long nextAccountNumber) 
 	{
 		++accountNumber ;
@@ -228,8 +215,5 @@ public class MeritBank{
 	public static BankAccount getBankAccount(long accountId) {
 		return null;
 	}
-	
-	
-	
-	
+
 }

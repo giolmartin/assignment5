@@ -22,6 +22,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 {
 	private static final double MAX_BALANCE_AMOUNT = 250000;
 	
+	private int id;
 	@NotBlank
 	private  String firstName = "";
 	@NotBlank
@@ -29,6 +30,10 @@ public class AccountHolder implements Comparable<AccountHolder>
 	@NotBlank
 	private  String ssn = "";
 	
+	private static int nextId = 1;
+	
+	
+
 	private  String middleName = "";
 	
 
@@ -64,6 +69,7 @@ public class AccountHolder implements Comparable<AccountHolder>
 	 */
 	public AccountHolder(String firstName, String middleName, String lastName, String ssn) 
 	{
+		this.id = nextId++;
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -75,6 +81,10 @@ public class AccountHolder implements Comparable<AccountHolder>
 	/** -----------------------------------------------GETTERS------------------------------------------------------*/
 
 	/** returns instance variable firstName */
+	public int getId() {
+		return id;
+	}
+	
 
 	public String getFirstName() 
 	{
@@ -104,6 +114,10 @@ public class AccountHolder implements Comparable<AccountHolder>
 	}
 
 	/** -----------------------------------------------SETTERS------------------------------------------------------*/
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	/** Sets first name */
 	public void setFirstName(String firstName) 
